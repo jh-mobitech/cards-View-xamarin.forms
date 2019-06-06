@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App394"
+              xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:local1="clr-namespace:PanCardViewSample.ViewModels"
+             x:Class="App394.MainPage">
+
+
+    <ContentPage.BindingContext>
+        <local1:CardsSampleViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <!--the value PositionShiftValue here should be screenWidth - 3*imageWidth - 4*whiteSpaceWidth -->
+    <!--you can also try PositionShiftPercentage but i did not get success-->
+    
+    <StackLayout>
+        <cards:CoverFlowView   
+            
+                
+                PositionShiftValue="250"   
+            
+            
+                IsCyclical="True"
+                IsAutoInteractionRunning="{Binding IsAutoAnimationRunning}"
+                IsUserInteractionRunning="{Binding IsUserInteractionRunning}"
+                SelectedIndex="{Binding CurrentIndex}"
+                ItemsSource="{Binding Items}"
+                HeightRequest="180"
+                WidthRequest="100">
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Padding="40">
+                        <Frame 
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"           
+                            Padding="0" 
+                            HasShadow="false"
+                            IsClippedToBounds="true"
+                            CornerRadius="10"
+                            BackgroundColor="Green">
+
+                            <Image Source="sample.jpg" Aspect="AspectFill" WidthRequest="100" HeightRequest="100"/>
+
+                        </Frame>
+                    </ContentView>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+        </cards:CoverFlowView>
+    </StackLayout>
+    
+</ContentPage>
